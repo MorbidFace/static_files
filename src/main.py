@@ -2,9 +2,12 @@ import os
 import shutil
 
 from copy_static import copy_files
+from page_generator import generate_pages_recursive
 
 static_path = "./static"
 public_path = "./public"
+content_path = "./content"
+template_path = "./template.html"
 
 def handle_copy():
     print("==============================================")
@@ -24,8 +27,9 @@ def handle_copy():
     print("Files Copied!")
     print("==============================================")
 
-
 def main():
     handle_copy()
+    if os.path.exists(template_path) and os.path.isfile(template_path):
+        generate_pages_recursive(content_path, template_path, public_path)
 
 main()
